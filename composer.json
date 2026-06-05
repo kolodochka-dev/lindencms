@@ -1,0 +1,32 @@
+{
+    "name": "lindencms/cms",
+    "description": "LindenCMS - Complete CMS solution with dynamic content modeling for Laravel.",
+    "type": "library",
+    "require": {
+        "laravel/framework": "^12.0",
+        "laravel/fortify": "^1.37",
+        "lindencms/templator": "^0.1",
+        "lindencms/core": "^0.1",
+        "intervention/image": "^3.11"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LindenCMS\\Cms\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LindenCMS\\Cms\\CmsServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Kolodochka Alexey",
+            "email": "kolodochka.alesha@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
