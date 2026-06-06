@@ -1,0 +1,133 @@
+.upload {
+    @apply flex-1;
+
+    .upload_header {
+        @apply flex justify-between items-center mb-2;
+
+        .upload_header_title {
+            h5 {
+                @apply inline;
+            }
+
+            span {
+                @apply text-border-600 text-sm ml-1;
+            }
+        }
+
+        .upload_header_actions {
+            @apply flex gap-3;
+
+            .upload_header_actions_clear {
+                @apply flex items-center text-xs text-border-600 rounded hover:text-error cursor-pointer;
+            }
+        }
+    }
+
+    &:has(.upload_messages_item.--error) .upload_uploadedList {
+        @apply border-error outline-2 outline-error outline-offset-2;
+    }
+
+    &:has(.upload_messages_item.--success) .upload_uploadedList {
+        @apply border-success outline-2 outline-success outline-offset-2;
+    }
+
+    .upload_messages {
+        .upload_messages_item {
+            @apply mt-1 text-xs font-bold;
+        }
+
+        .upload_messages_item.--success {
+            @apply text-success;
+        }
+
+        .upload_messages_item.--error {
+            @apply text-error;
+        }
+    }
+
+    .upload_uploadedList {
+        @apply max-h-[700px] flex flex-col gap-4 overflow-y-auto p-4 border border-border-300 border-dashed rounded-lg bg-back-50;
+
+        .upload_uploadedList_item {
+            @apply bg-white border rounded-lg p-4 text-xs;
+
+            .upload_uploadedList_item_content {
+                @apply flex gap-3;
+
+                img {
+                    @apply w-20 h-20 rounded object-cover bg-border-600 border border-border-400;
+                }
+
+                .upload_uploadedList_item_content_info {
+                    @apply flex-1 flex flex-col gap-1;
+
+                    .upload_uploadedList_item_content_info_up {
+                        @apply flex justify-between;
+
+                        h6 {
+                            @apply break-all;
+                        }
+
+                        span {
+                            @apply text-border-600;
+                        }
+                    }
+
+                    .upload_uploadedList_item_content_info_middle {
+                        @apply flex items-center gap-3 text-border-600;
+
+                        span {
+                            @apply px-2 py-0.5 bg-back-200 rounded font-bold;
+                        }
+                    }
+
+                    .upload_uploadedList_item_content_info_down {
+                        @apply flex justify-between items-end;
+
+                        .upload_uploadedList_item_content_info_down_actions {
+                            @apply flex items-center gap-5 text-border-400;
+
+                            button,
+                            a {
+                                @apply flex items-center gap-1 rounded cursor-pointer;
+                            }
+
+                            button.--info,
+                            a.--info {
+                                @apply hover:text-info text-info-300;
+                            }
+
+                            button.--accent,
+                            a.--accent {
+                                @apply hover:text-accent text-accent-300;
+                            }
+
+                            button.--error,
+                            a.--error {
+                                @apply hover:text-error text-error-300;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .upload_uploadedList_item_responsiveList_wrapper {
+                h5 {
+                    @apply my-2;
+                }
+
+                .upload_uploadedList_item_responsiveList {
+                    @apply space-y-3 p-3 bg-back-50 rounded-lg inset-shadow-sm border border-border;
+                }
+            }
+
+            .upload_uploadedList_item_responsiveList_wrapper:not(:has(.upload_uploadedList_item)) {
+                @apply hidden;
+            }
+        }
+    }
+
+    .upload_uploadedList:not(:has(.upload_uploadedList_item)) {
+        @apply hidden;
+    }
+}

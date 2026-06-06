@@ -1,12 +1,8 @@
 <?php
 
-namespace LindenCMS\Core;
+namespace LindenCMS\Cms;
 
 use Illuminate\Support\ServiceProvider;
-use LindenCMS\Core\Services\Init;
-use LindenCMS\Core\Contracts\InitContract;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Pagination\Paginator;
 use Intervention\Image\ImageManager;
@@ -14,6 +10,8 @@ use Intervention\Image\Drivers\Gd\Driver;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\LoginResponse;
+use LindenCMS\Cms\Console\Commands\InstallCommand;
+use LindenCMS\Cms\Console\Commands\SyncCommand;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -21,9 +19,7 @@ class CmsServiceProvider extends ServiceProvider
     {
         // Cms
         $this->app->bind(ImageManager::class, fn($app) => new ImageManager(new Driver()));
-        View::addNamespace('cms', resource_path('cms/views'));
-        Vite::useManifestFilename('.vite/manifest.json');
-        
+
         // Fortify
         Fortify::loginView(fn() => view('cms::auth.login'));
         $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
@@ -42,22 +38,35 @@ class CmsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Response::macro(
-            'htmxRedirect',
-            fn($route, $code = 200) => response('', $code, [
-                'HX-Redirect' => $route,
-                // 'HX-Refresh' => 'true',
-            ])
-        );
+        $this->publishes([
+            __DIR__ . '/../config/lindencms.php' => config_path('lindencms.php'),
+        ]);
+        
+        $this->publishes([
+            __DIR__ . '/../public/vendor/lindencms' => public_path('vendor/lindencms'),
+        ], 'lindencms-assets');
+        
+        // Publish views (optional, for customization)
+        // $this->publishes([
+        //     __DIR__ . '/../resources/views' => resource_path('views/vendor/cms'),
+        // ], 'lindencms-views');
 
-        Response::macro(
-            'htmxReplaceUrl',
-            fn($route, $content = '', $code = 200) =>
-            response($content, $code, [
-                'HX-Replace-Url' => $route,
-            ])
-        );
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
 
         Paginator::defaultView('cms::pagination.pagination');
+        Response::macro('htmxRedirect', fn($route, $code = 200) => response('', $code, [
+            'HX-Redirect' => $route,
+        ]));
+        Response::macro('htmxReplaceUrl', fn($route, $content = '', $code = 200) => response($content, $code, [
+            'HX-Replace-Url' => $route,
+        ]));
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallCommand::class,
+                SyncCommand::class,
+            ]);
+        }
     }
 }

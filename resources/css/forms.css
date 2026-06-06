@@ -1,0 +1,98 @@
+.input-select {
+    background-image: linear-gradient(45deg, #0000 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, #0000 50%);
+    background-position: calc(100% - 20px) calc(1px + 50%), calc(100% - 16.1px) calc(1px + 50%);
+    background-size: 4px 4px, 4px 4px;
+    background-repeat: no-repeat;
+}
+
+.droplist {
+    @apply relative;
+
+    .droplist-select {
+        @apply absolute top-0 left-0 hidden;
+
+        &.shown {
+            @apply flex;
+        }
+    }
+}
+
+.relations {
+    @apply normal-case;
+
+    .relations-container {
+        @apply border border-border rounded-md p-2 flex justify-between w-full inset-shadow-xs;
+
+        .relations-selected {
+            @apply w-full flex flex-wrap items-center gap-2;
+
+            .relations-pill {
+                @apply flex items-center justify-between bg-white border border-border-200 shadow-sm px-2.5 py-0.5 pr-2 rounded-md min-w-24;
+
+                .relations-remove_pill {
+                    @apply flex items-center cursor-pointer;
+                }
+
+                .relations-pill-link {
+                    @apply underline text-accent cursor-pointer;
+                }
+            }
+
+            .not-found {
+                @apply w-full text-gray-500 text-center hidden;
+            }
+        }
+
+        .droplist-show {
+            @apply flex items-center cursor-pointer;
+        }
+    }
+
+    .droplist-select {
+        @apply card card-sm w-full z-20;
+
+        .droplist-body {
+            @apply card-body bg-base-100 z-1 w-full p-2 border border-border rounded-md max-h-60 overflow-y-auto;
+
+            .relations-search {
+                @apply py-1.5 px-3 w-full border border-border-100 rounded-lg outline-none;
+            }
+
+            .relations-options {
+                @apply flex flex-col gap-1;
+
+                &:not(:has(label:not([style*="display: none"]))) .not-found {
+                    display: block;
+                }
+
+                .not-found {
+                    @apply text-base-content text-center m-2 hidden;
+                }
+
+                label.relations-option {
+                    @apply label text-base-content hover:bg-neutral-content rounded p-1.5 font-normal;
+                }
+            }
+        }
+    }
+}
+
+.input[readonly] {
+    @apply bg-gray-50 text-gray-500 cursor-not-allowed;
+}
+
+.radio-btn {
+    @apply btn bg-white flex items-center gap-2 border border-border-200 cursor-pointer transition-all duration-150;
+    
+    &:has(input[type="radio"]:checked) {
+        @apply border-primary bg-primary-50;
+    }
+    
+    &:hover {
+        @apply border-primary;
+    }
+}
+
+.tile {
+    @apply bg-white /* border border-border */ min-w-84 rounded p-4 text-black space-y-3 shadow border border-primary-200;
+}

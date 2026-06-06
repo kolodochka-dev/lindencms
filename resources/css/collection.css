@@ -1,0 +1,29 @@
+.collection {
+    .collection-head {
+        @apply flex items-center justify-between;
+
+        h3 {
+            @apply flex items-center gap-2;
+        }
+
+        .collection-head-icon {
+            @apply text-gray-400;
+        }
+    }
+
+    .collection-body {
+        @apply ml-8 mt-2 flex flex-col;
+
+        .collection-items {
+            @apply flex flex-col gap-4;
+        }
+
+        .collection-items:has(:empty) ~ .collection-empty {
+            @apply hidden;
+        }
+
+        .collection-empty {
+            @apply flex flex-col items-center justify-center -ml-8 rounded p-6 border border-border inset-shadow-xs text-gray-400;
+        }
+    }
+}

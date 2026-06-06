@@ -3,6 +3,7 @@
     "description": "LindenCMS - Complete CMS solution with dynamic content modeling for Laravel.",
     "type": "library",
     "require": {
+        "php": "^8.5",
         "laravel/framework": "^12.0",
         "laravel/fortify": "^1.37",
         "lindencms/templator": "^0.1",

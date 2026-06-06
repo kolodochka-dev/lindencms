@@ -1,0 +1,63 @@
+aside {
+    @apply w-58 flex flex-col;
+
+    .nav-section {
+        @apply flex flex-col flex-1;
+
+        .nav-section-logo {
+            @apply flex items-center justify-center h-12 border-b border-border bg-white;
+
+            span {
+                @apply font-bold text-xl text-neutral;
+            }
+        }
+
+        nav {
+            @apply flex-1 overflow-y-auto pt-3 px-2 space-y-1 font-semibold rounded-b-xl;
+
+            .group {
+                @apply text-[.65rem] uppercase text-gray-400 my-2;
+            }
+
+            a {
+                @apply flex items-center space-x-3 px-3 py-2 rounded outline-border hover:outline;
+
+                &.active {
+                    @apply bg-white font-extrabold outline;
+                }
+            }
+        }
+    }
+
+    .profile-section {
+        @apply flex items-center space-x-3 p-4 border-t border-border bg-white;
+
+        .profile-section-avatar {
+            @apply w-10 h-10 rounded-full bg-sky-200 flex items-center justify-center;
+
+            img {
+                @apply w-10 h-10 rounded-full border border-neutral-200 object-cover;
+            }
+        }
+
+        .profile-section-info {
+            @apply flex-1;
+
+            .profile-section-info-name {
+                @apply font-medium;
+            }
+
+            .profile-section-info-role {
+                @apply text-xs text-neutral-400;
+            }
+        }
+
+        .profile-section-link {
+            @apply flex items-center;
+
+            .profile-section-link-icon {
+                @apply text-neutral-500 hover:text-primary;
+            }
+        }
+    }
+}

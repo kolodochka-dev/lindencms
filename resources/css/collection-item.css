@@ -1,0 +1,7 @@
+.collection-item {
+    @apply rounded-xl bg-base-100 border border-border-200 shadow;
+
+    .collection-item-body {
+        @apply p-3 flex flex-col gap-3;
+    }
+}

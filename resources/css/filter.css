@@ -1,0 +1,30 @@
+.filters {
+    @apply flex items-center justify-between;
+
+    .filters_left {
+        @apply flex items-center gap-2;
+    }
+
+    .filters_right {
+        @apply flex items-center gap-2;
+    }
+
+    /* could be both left and right */
+    .dropdown {
+        .dropdown_btn {
+            @apply btn btn-md bg-white flex items-center font-bold;
+        }
+
+        .dropdown-content.card {
+            @apply bg-base-100 z-1 w-84 mt-2 shadow-sm rounded-lg;
+
+            .card-body {
+                @apply p-4 gap-3;
+                
+                .dropdown-content_footer {
+                    @apply flex gap-3 mt-2;
+                }
+            }
+        }
+    }
+}

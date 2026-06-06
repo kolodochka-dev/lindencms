@@ -1,0 +1,192 @@
+@import 'tailwindcss';
+@import "./tabs.css";
+@import "./forms.css";
+@import "./component.css";
+@import "./collection.css";
+@import "./collection-item.css";
+@import "./sidebar.css";
+@import "./filter.css";
+@import "./table.css";
+@import "./upload.css";
+
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@plugin "daisyui" {
+    themes: emerald --default;
+}
+
+@plugin "daisyui/theme" {
+    name: "emerald";
+    default: true; 
+    --color-primary: #509caf;
+    --color-secondary: #6d9c63;
+    --color-accent: #b14e6f;
+    --color-neutral: #353131;
+    --color-info: #59DBE7;
+    --color-success: #85D46E;
+    --color-warning: #E1CB60;
+    --color-error: #E76659;
+}
+
+@theme {
+    /* Base Borders */
+    --color-border: #e6e5e5;
+    --color-border-50: #f3f2f2;
+    --color-border-100: #e6e5e5;
+    --color-border-200: #cdcbcb;
+    --color-border-300: #b4b1b1;
+    --color-border-400: #9b9797;
+    --color-border-500: #827d7d;
+    --color-border-600: #686464;
+    --color-border-700: #4e4b4b;
+    --color-border-800: #343232;
+    --color-border-900: #1a1919;
+
+    /* Backgrounds */
+    --color-back-50: #faf9f9;
+    --color-back-100: #f3f2f2;
+    --color-back-200: #e6e5e5;
+    --color-back-300: #cdcbcb;
+    --color-back-400: #b4b1b1;
+    --color-back-500: #9b9797;
+    --color-back-600: #827d7d;
+
+    /* Text */
+    --color-text-primary: #1a1919;
+    --color-text-secondary: #4e4b4b;
+    --color-text-tertiary: #686464;
+    --color-text-disabled: #9b9797;
+    --color-text-inverse: #FFFFFF;
+
+    /* Primary - Pacific Cyan (#509caf) */
+    --color-primary-25: #f6fafb;
+    --color-primary-50: #eef5f7;
+    --color-primary-100: #dcebef;
+    --color-primary-200: #b9d7df;
+    --color-primary-300: #96c3cf;
+    --color-primary-400: #73b0bf;
+    --color-primary-500: #509caf;
+    /* Your chosen primary */
+    --color-primary-600: #407d8c;
+    --color-primary-700: #305d69;
+    --color-primary-800: #203e46;
+    --color-primary-900: #101f23;
+    --color-primary-950: #0b1618;
+
+    /* Secondary - Sage Green (#6d9c63) */
+    --color-secondary-25: #f8faf7; 
+    --color-secondary-50: #f0f5ef;
+    --color-secondary-100: #e2ebe0;
+    --color-secondary-200: #c5d7c1;
+    --color-secondary-300: #a7c3a2;
+    --color-secondary-400: #8aaf83;
+    --color-secondary-500: #6d9c63;
+    /* Your chosen secondary */
+    --color-secondary-600: #577c50;
+    --color-secondary-700: #415d3c;
+    --color-secondary-800: #2c3e28;
+    --color-secondary-900: #161f14;
+
+     /* Accent - Old Rose */
+    --color-accent-50: #f7edf1;
+    --color-accent-100: #efdce2;
+    --color-accent-200: #e0b8c5;
+    --color-accent-300: #d095a9;
+    --color-accent-400: #c1718c;
+    --color-accent-500: #b14e6f;
+    --color-accent-600: #8e3e59;
+    --color-accent-700: #6a2f43;
+    --color-accent-800: #471f2c;
+    --color-accent-900: #231016;
+    --color-accent-950: #190b10;
+    
+    /* Info - Bright Cyan (#59DBE7) */
+    --color-info-50: #e6fbfd;
+    --color-info-100: #ccf7fb;
+    --color-info-200: #a3f0f7;
+    --color-info-300: #7ae8f2;
+    --color-info-400: #59dbe7;     /* Your base */
+    --color-info-500: #3fc4d1;
+    --color-info-600: #2ea3b0;
+    --color-info-700: #207f8a;
+    --color-info-800: #145b64;
+    --color-info-900: #0a383f;
+    --color-info-950: #052229;
+    
+    /* Success - Fresh Green (#85D46E) */
+    --color-success-50: #f1fbed;
+    --color-success-100: #e3f7db;
+    --color-success-200: #c9f0b9;
+    --color-success-300: #aae297;
+    --color-success-400: #85d46e;    /* Your base */
+    --color-success-500: #68ba50;
+    --color-success-600: #4f9b3b;
+    --color-success-700: #3a782b;
+    --color-success-800: #27551d;
+    --color-success-900: #15320f;
+    --color-success-950: #0b1f09;
+    
+    /* Warning - Warm Yellow (#E1CB60) */
+    --color-warning-50: #fdf9e8;
+    --color-warning-100: #fbf3d1;
+    --color-warning-200: #f8e9a8;
+    --color-warning-300: #f0da7f;
+    --color-warning-400: #e1cb60;    /* Your base */
+    --color-warning-500: #c9b148;
+    --color-warning-600: #ab9135;
+    --color-warning-700: #876f26;
+    --color-warning-800: #634e1a;
+    --color-warning-900: #3f2f0f;
+    --color-warning-950: #261d09;
+    
+    /* Error - Coral Red (#E76659) */
+    --color-error-50: #fdedeb;
+    --color-error-100: #fcdbd7;
+    --color-error-200: #f9bcb4;
+    --color-error-300: #f59d91;
+    --color-error-400: #e76659;      /* Your base */
+    --color-error-500: #d14b3f;
+    --color-error-600: #b3372c;
+    --color-error-700: #8f281f;
+    --color-error-800: #6a1c15;
+    --color-error-900: #45100c;
+    --color-error-950: #2b0a07;
+}
+
+body {
+    @apply text-base-content bg-back-50 text-sm;
+}
+
+header {
+    @apply flex items-center justify-between p-4 h-12 border-l-1 border-b-1 border-primary-200 bg-primary-25;
+}
+
+main {
+    @apply flex-1 flex overflow-hidden border-l-1 border-border-100;
+}
+
+h1 {
+    @apply font-bold text-3xl;
+}
+
+h2 {
+    @apply font-bold text-2xl;
+}
+
+h3 {
+    @apply font-semibold text-xl;
+}
+
+h4 {
+    @apply font-semibold text-lg;
+}
+
+h5 {
+    @apply font-semibold text-base;
+}
+
+h6 {
+    @apply font-semibold text-sm uppercase tracking-wider;
+}

@@ -1,0 +1,44 @@
+.tab-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    @apply h-full flex flex-col;
+
+    .tab-buttons-container {
+        @apply flex border-b border-gray-300;
+    }
+
+    .tab-contents {
+        @apply p-4 relative flex-1;
+
+        .tab-content {
+            @apply hidden;
+
+            &.active {
+                @apply block;
+            }
+        }
+    }
+
+    .tab-button {
+        @apply px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-500 cursor-pointer;
+
+        &:hover {
+            @apply text-primary-600;
+        }
+
+        &.active {
+            @apply border-primary text-primary font-semibold;
+        }
+    }
+}
+
+[data-tab-content] {
+    @apply hidden;
+}
+
+.active-attr-tab {
+    @apply block;
+}
+
+.active-attr-btn {
+    @apply bg-white shadow-sm border-r-3 border-primary;
+}
