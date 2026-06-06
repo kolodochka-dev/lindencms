@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 class SyncCommand extends Command
 {
-    protected $signature = 'cms:sync {--reset : Reset tables}';
+    protected $signature = 'lindencms:sync {--reset : Reset tables}';
     // protected $signature = 'cms:sync {--reset : Reset tables} {--clear : Drop tables that no longer have a corresponding node class}';
 
     protected $description = 'Synchronize LindenCMS nodes with the database';

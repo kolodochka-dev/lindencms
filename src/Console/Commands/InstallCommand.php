@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class InstallCommand extends Command
 {
-    protected $signature = 'cms:install';
+    protected $signature = 'lindencms:install';
     
     protected $description = 'Install LindenCMS with admin user and initial setup';
     
