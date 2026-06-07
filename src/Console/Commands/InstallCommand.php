@@ -66,12 +66,19 @@ class InstallCommand extends Command
         }
         
         // Create the user
-        $user = User::create([
+        // $user = User::create([
+        //     'name' => $name,
+        //     'email' => $email,
+        //     'password' => Hash::make($password),
+        //     // 'email_verified_at' => now(),
+        // ]);
+
+        $user = new User([
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
-            // 'email_verified_at' => now(),
         ]);
+        $user->save();
         
         $this->info('✓ Admin user created successfully!');
     }
