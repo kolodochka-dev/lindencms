@@ -1,9 +1,13 @@
 <?php
 
+use LindenCMS\Cms\Nodes\File;
+use LindenCMS\Cms\Nodes\User;
+
 return [
     // Nodes
     'nodes' => [
-        // ...
+        'users' => User::class,
+        'files' => File::class,
     ],
     'navigation' => [
         // ...

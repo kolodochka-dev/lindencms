@@ -45,8 +45,9 @@ class SyncCommand extends Command
         //         return self::SUCCESS;
         //     }
         // }
-
-        $this->info('Found ' . count($nodes) . ' node classes to sync');
+        
+        $this->newLine();
+        $this->line('  Found ' . count($nodes) . ' node classes to sync');
         $this->sync($generator, $nodes, $reset);
 
         // if ($clear) {
@@ -56,7 +57,8 @@ class SyncCommand extends Command
         $this->newLine();
         $this->newLine();
 
-        $this->info('✓ Synchronization completed successfully!');
+        usleep(500 * 1000);
+        $this->info('  ✓ Complete!');
 
         return self::SUCCESS;
     }

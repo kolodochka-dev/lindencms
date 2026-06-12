@@ -2,9 +2,9 @@
 
 namespace LindenCMS\Cms\Ui\Forms;
 
-use LindenCMS\Cms\Hive\Html\Component as BaseComponent;
+use LindenCMS\Templator\Component;
 
-class CollectionItem extends BaseComponent
+class CollectionItem extends Component
 {
     public function __construct(
         public string $id = '',

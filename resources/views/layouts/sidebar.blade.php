@@ -12,12 +12,11 @@
                 <span>Dashboard</span>
             </a>
             @foreach (config('lindencms.navigation') as $group => $nodes)
-                <div class="group">{{ $group }}</div>
+                @if ($group)
+                    <div class="group">{{ $group }}</div>
+                @endif
                 @foreach ($nodes as $nodeClass)
                     @php
-                        /**
-                         * @var App\Nodes\AppNode
-                         */
                         $node = $nodeClass::make();
                     @endphp
 
@@ -27,12 +26,8 @@
         </nav>
     </div>
 
-
     @php
-        /**
-         * @var App\Nodes\User
-         */
-        $user = App\Nodes\User::read(auth()->id());
+        $user = LindenCMS\Cms\Nodes\User::read(auth()->id());
         $userRoute = route('nodes.edit', [
             'code' => $user->code(),
             'id' => $user->id->get(),

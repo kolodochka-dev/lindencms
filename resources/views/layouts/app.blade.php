@@ -13,7 +13,8 @@
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/ext/multi-swap.js"></script>
     
     <link href="{{ asset('vendor/lindencms/cms/assets/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('vendor/lindencms/cms/assets/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.2/dist/iconify-icon.min.js"></script>
+    <script src="{{ asset('vendor/lindencms/cms/assets/app.js') }}" type="module"></script>
 </head>
 
 <body hx-ext="multi-swap">
