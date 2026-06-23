@@ -46,7 +46,7 @@
                             <p class="text-xs text-gray-400">
                                 This is the <b class="text-gray-500">BETA</b> release of the LindenCMS project.
                                 Feel free to ask questions on
-                                <a href="https://github.com/kolodochka-dev" class="text-primary-500 hover:text-primary-600 transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a> 
+                                <a href="https://github.com/kolodochka-dev/lindencms/issues" class="text-primary-500 hover:text-primary-600 transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a> 
                                 or reach out via 
                                 <a href="mailto:kolodochka.alesha@gmail.com" class="text-primary-500 hover:text-primary-600 transition-colors">email</a>. 
                             </p>
@@ -59,9 +59,9 @@
                     {{-- Footer links (docs/website) --}}
                     <div class="mt-auto">
                         <div class="flex gap-4 text-xs">
-                            <a href="#" class="text-text-tertiary hover:text-primary-600 transition-colors">Documentation</a>
+                            <a href="https://kolodochka-dev.github.io/lindencms-docs/" target="_blank" class="text-text-tertiary hover:text-primary-600 transition-colors">Documentation</a>
                             <span class="text-border-300">|</span>
-                            <a href="https://github.com/kolodochka-dev" target="_blank" class="text-text-tertiary hover:text-primary-600 transition-colors">GitHub</a>
+                            <a href="https://github.com/kolodochka-dev/lindencms" target="_blank" class="text-text-tertiary hover:text-primary-600 transition-colors">GitHub</a>
                         </div>
                     </div>
                 </div>

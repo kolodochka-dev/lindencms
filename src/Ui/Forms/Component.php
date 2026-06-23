@@ -2,15 +2,15 @@
 
 namespace LindenCMS\Cms\Ui\Forms;
 
-use LindenCMS\Templator\Component;
+use LindenCMS\Templator\Component as TemplatorComponent;
 
-class Component extends Component
+class Component extends TemplatorComponent
 {
     public function __construct(
-        public string $id = '',
-        public string $label = '',
-        public string $icon = '',
-        public string $class = '',
+        public ?string $id = '',
+        public ?string $label = '',
+        public ?string $icon = '',
+        public ?string $class = '',
     ) {}
 
     protected function template(): string

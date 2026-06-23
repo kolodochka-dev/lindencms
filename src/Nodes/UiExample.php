@@ -5,6 +5,7 @@ namespace LindenCMS\Cms\Nodes;
 use LindenCMS\Cms\Attributes\View;
 use LindenCMS\Cms\Attributes\Validation;
 use LindenCMS\Cms\Attributes\File;
+use LindenCMS\Cms\Attributes\Relationship;
 
 #[View(
     label: 'Ui Example',
@@ -48,4 +49,10 @@ class UiExample extends AppNode
     #[File(multiple: false)]
     #[Validation('file|extensions:jpg')]
     public FileUploads $image;
+
+    // #[Relationship(RootNode::class)]
+    // public Relation $realat;
+
+    //  #[Relationship(RootNode::class)]
+    // public Relations $relates;
 }
