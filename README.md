@@ -24,3 +24,7 @@ cd my-project
 composer require lindencms/cms
 php artisan lindencms:install
 php artisan lindencms:sync
+```
+
+## Project Status
+Early Beta – This project is under active development. It is stable for testing and feedback but is not yet recommended for production use. See the Beta Notice in the documentation for details.
