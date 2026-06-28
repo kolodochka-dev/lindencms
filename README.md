@@ -19,7 +19,7 @@ LindenCMS gives you the development speed of a traditional CMS with the flexibil
 ## Quick Start
 
 ```bash
-composer create-project laravel/laravel my-project
+composer create-project laravel/laravel:^12.0 my-project
 cd my-project
 composer require lindencms/cms
 php artisan lindencms:install
