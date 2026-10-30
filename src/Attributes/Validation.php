@@ -9,7 +9,6 @@ class Validation
         public string|array $rules = [],
         public string|array $messages = [],
         public string|array $attributes = [],
-        public bool $exclude = false,
     ) {}
 }
 

@@ -3,17 +3,17 @@
 namespace LindenCMS\Cms\Services;
 
 use LindenCMS\Cms\Contracts\SchemaGeneratable;
-use LindenCMS\Cms\Nodes\AppNode;
+use LindenCMS\Cms\Node;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 
 class SchemaGenerator
 {
-    public function sync(AppNode $node, bool $reset = false): void
+    public function sync(Node $node, bool $reset = false): void
     {
-        $context = $node->context('db.schema');
-        if ($reset && !$node->_database()?->schemaExclude &&  !$node->_database()?->resetExclude) {
+        $context = $node->ctx()->schema();
+        if ($reset && !$node->_schema()?->exclude) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             $this->reset($context);
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -25,9 +25,9 @@ class SchemaGenerator
     private function reset(SchemaGeneratable $context)
     {
         foreach ($context->related() as $related) {
-            $this->reset($related->context('db.schema'));
+            $this->reset($related->ctx()->schema());
         }
-
+    
         $tableName = $context->tableName();
         if (Schema::hasTable($tableName)) {
             Schema::drop($tableName);
@@ -41,7 +41,6 @@ class SchemaGenerator
         }
 
         $tableName = $context->tableName();
-
         if (!Schema::hasTable($tableName)) {
             Schema::create($tableName, fn(Blueprint $table) => $context->bluePrintCreate($table));
         } else {
@@ -49,7 +48,7 @@ class SchemaGenerator
         }
 
         foreach ($context->related() as $related) {
-            $this->handle($related->context('db.schema'));
+            $this->handle($related->ctx()->schema());
         }
     }
 }

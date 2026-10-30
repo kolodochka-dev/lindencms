@@ -16,19 +16,6 @@ export class Lines extends Module {
     bind() {
         this.drawAllLines();
 
-        // const updateLines = () => {
-        //     if (window.collectionLines) {
-        //         window.collectionLines.forEach(line => {
-        //             if (line && line.update) {
-        //                 line.update();
-        //             }
-        //         });
-        //     }
-        // };
-        // window.addEventListener('scroll', updateLines);
-        // window.addEventListener('resize', updateLines);
-        // document.addEventListener('tabChanged', updateLines);
-
         window.addEventListener('tabChanged', () => {
             setTimeout(() => {
                 this.drawAllLines()
@@ -37,14 +24,6 @@ export class Lines extends Module {
     }
 
     bindHtmx() {
-        // Обработка события после загрузки контента HTMX
-        // document.addEventListener('htmx:afterSwap', (event) => {
-        //     // Если это hx-boost навигация или загрузка нового контента
-        //     if (event.detail.target !== document.body || event.detail.boosted) {
-        //         setTimeout(() => this.drawAllLines(), 100);
-        //     }
-        // });
-
         // При загрузке страницы с hx-boost
         document.addEventListener('htmx:load', (event) => {
             setTimeout(() => this.drawAllLines(), 100);
@@ -76,7 +55,7 @@ export class Lines extends Module {
         const lines = [];
 
         collections.forEach(collection => {
-            const icon = collection.querySelector(`.collection-head-icon[data-collection="${collection.id}"]`);
+            const icon = collection.querySelector(`.collection_head_icon[data-collection="${collection.id}"]`);
             if (!icon) return;
 
             var iconDot = this.newIconDot(icon);
@@ -84,7 +63,7 @@ export class Lines extends Module {
             const svg = this.createSvgContainer(collection);
             let prevDot = iconDot;
 
-            const collectionItems = collection.querySelector(`.collection-items[data-collection="${collection.id}"]`);
+            const collectionItems = collection.querySelector(`.collection_items[data-collection="${collection.id}"]`);
             if (!collectionItems) return;
 
             const items = Array.from(collectionItems.children);
@@ -193,7 +172,7 @@ export class Lines extends Module {
         itemDot.addEventListener('click', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            itemDot.closest('.collection-item').remove();
+            itemDot.closest('.collection_item').remove();
             this.drawAllLines();
         });
 
@@ -223,7 +202,7 @@ export class Lines extends Module {
 
     drawLine(svg, startDot, endDot, isDashed = false) {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('class', 'collection-line');
+        line.setAttribute('class', 'collection_line');
 
         const updatePosition = () => {
             const collection = svg.closest('.collection');

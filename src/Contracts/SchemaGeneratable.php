@@ -6,7 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 interface SchemaGeneratable
 {
-    public function tableName(): string;
+    public function tableName(bool $withPrefix = true): string;
     public function isGeneratable(): bool;
     public function foreignKeyName(): string;
     public function related(): array;

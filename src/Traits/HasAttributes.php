@@ -4,11 +4,13 @@ namespace LindenCMS\Cms\Traits;
 
 use LindenCMS\Cms\Attributes\Database;
 use LindenCMS\Cms\Attributes\Eager;
-use LindenCMS\Cms\Attributes\Load;
-use LindenCMS\Cms\Attributes\Relationship;
-use LindenCMS\Cms\Attributes\Validation;
+use LindenCMS\Cms\Attributes\Relation;
+use LindenCMS\Cms\Attributes\Schema;
+use LindenCMS\Cms\Attributes\Search;
 use LindenCMS\Cms\Attributes\View;
+use LindenCMS\Cms\Attributes\Validation;
 use LindenCMS\Cms\Attributes\File;
+use LindenCMS\Cms\Attributes\Load;
 
 trait HasAttributes
 {
@@ -22,14 +24,19 @@ trait HasAttributes
         return $this->nodeAttributes[Database::class] ?? null;
     }
 
+    public function _schema(): ?Schema
+    {
+        return $this->nodeAttributes[Schema::class] ?? null;
+    }
+
     public function _eager(): ?Eager
     {
         return $this->nodeAttributes[Eager::class] ?? null;
     }
 
-    public function _relationship(): ?Relationship
+    public function _relation(): ?Relation
     {
-        return $this->nodeAttributes[Relationship::class] ?? null;
+        return $this->nodeAttributes[Relation::class] ?? null;
     }
 
     public function _validation(): ?Validation
@@ -45,5 +52,10 @@ trait HasAttributes
     public function _load(): ?Load
     {
         return $this->nodeAttributes[Load::class] ?? null;
+    }
+
+    public function _search(): ?Search
+    {
+        return $this->nodeAttributes[Search::class] ?? null;
     }
 }

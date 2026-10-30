@@ -1,10 +1,8 @@
 <aside>
-    <div class="nav-section">
-        <!-- Логотип -->
-        <div class="nav-section-logo">
-            <h3 class="text-secondary">LindenCMS</h3>
+    <div class="nav_section">
+        <div class="nav_section_logo">
+            <h3>LindenCMS</h3>
         </div>
-        <!-- Навигация -->
         <nav>
             <div class="group">Dashboard</div>
             <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
@@ -12,39 +10,35 @@
                 <span>Dashboard</span>
             </a>
             @foreach (config('lindencms.navigation') as $group => $nodes)
-                @if ($group)
-                    <div class="group">{{ $group }}</div>
-                @endif
+                <div class="group">{{ $group }}</div>
                 @foreach ($nodes as $nodeClass)
                     @php
                         $node = $nodeClass::make();
                     @endphp
 
-                    {!! $node->context('html.sidebar-nav-link') !!}
+                    {!! $node->ctx()->html_sidebarLink(request()->route('code') == $node->code() ? 'active' : '') !!}
                 @endforeach
             @endforeach
         </nav>
     </div>
 
     @php
-        $user = LindenCMS\Cms\Nodes\User::read(auth()->id());
+        $user = LindenCMS\Cms\User::make();
         $userRoute = route('nodes.edit', [
             'code' => $user->code(),
-            'id' => $user->id->get(),
+            'id' => 1,
         ]);
     @endphp
-    <!-- Блок пользователя -->
-    <div class="profile-section">
-        <div class="profile-section-avatar">
-            <img src="{{ $user->avatar->image()?->previewUrl() }}"/>
+    <div class="profile_section">
+        <div class="profile_section_avatar">
+            <img src=""/>
         </div>
-        <div class="profile-section-info">
-            <p class="profile-section-info-name">{{ $user->name ?? '' }}</p>
-            <p class="profile-section-info-role">{{ $user->email ?? '' }}</p>
-            <!-- <p class="profile-section-info-role">administrator</p> -->
+        <div class="profile_section_info">
+            <p class="profile_section_info_name">{{ $user->name ?? '' }}</p>
+            <p class="profile_section_info_role">{{ $user->email ?? '' }}</p>
         </div>
-        <a href="{{ $userRoute }}" class="profile-section-link">
-            <x-cms::i icon="fluent:open-12-regular" class="profile-section-link-icon" width="22" height="22" />
+        <a href="{{ $userRoute }}" class="profile_section_link">
+            <x-cms::i icon="fluent:open-12-regular" class="profile_section_link_icon" width="22" height="22" />
         </a>
     </div>
 </aside>

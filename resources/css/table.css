@@ -1,3 +1,0 @@
-.nodes-table tr:has(input[type="checkbox"][name="ids[]"]:checked) {
-    @apply bg-back-100;
-}

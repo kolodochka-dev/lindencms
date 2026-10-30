@@ -1,14 +1,18 @@
 aside {
     @apply w-58 flex flex-col;
 
-    .nav-section {
+    .nav_section {
         @apply flex flex-col flex-1;
 
-        .nav-section-logo {
+        .nav_section_logo {
             @apply flex items-center justify-center h-12 border-b border-border bg-white;
 
             span {
                 @apply font-bold text-xl text-neutral;
+            }
+
+            h3 {
+                @apply text-secondary;
             }
         }
 
@@ -29,10 +33,10 @@ aside {
         }
     }
 
-    .profile-section {
+    .profile_section {
         @apply flex items-center space-x-3 p-4 border-t border-border bg-white;
 
-        .profile-section-avatar {
+        .profile_section_avatar {
             @apply w-10 h-10 rounded-full bg-sky-200 flex items-center justify-center;
 
             img {
@@ -40,22 +44,22 @@ aside {
             }
         }
 
-        .profile-section-info {
+        .profile_section_info {
             @apply flex-1;
 
-            .profile-section-info-name {
+            .profile_section_info_name {
                 @apply font-medium;
             }
 
-            .profile-section-info-role {
+            .profile_section_info_role {
                 @apply text-xs text-neutral-400;
             }
         }
 
-        .profile-section-link {
+        .profile_section_link {
             @apply flex items-center;
 
-            .profile-section-link-icon {
+            .profile_section_link_icon {
                 @apply text-neutral-500 hover:text-primary;
             }
         }

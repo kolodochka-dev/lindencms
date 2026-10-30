@@ -24,7 +24,7 @@
 @else
     <a {!! $htmx !!}
         {{ $attributes->merge([
-            'class' => "btn $color",
+            'class' => "btn $color $class",
             'href' => $link,
         ]) }}>
         @if ($icon)

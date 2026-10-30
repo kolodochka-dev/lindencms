@@ -2,8 +2,8 @@
 
 namespace LindenCMS\Cms\Http\Controllers;
 
-use LindenCMS\Cms\Http\Controllers\Controller;
-use LindenCMS\Cms\Nodes\File;
+use LindenCMS\Cms\File;
+use LindenCMS\Cms\Services\FileManager;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -11,25 +11,28 @@ class FileController extends Controller
 {
     private File $file;
 
-    public function __construct(Request $request)
-    {
-        if (!$file = File::read($request->route('fileId'))) {
+    public function __construct(
+        private FileManager $fm,
+        Request $request,
+    ) {
+        $file = File::make();
+        if (!$file->ctx()->db_refresh($request->route('fileId'))) {
             throw new NotFoundHttpException;
         }
 
         $this->file = $file;
     }
 
-    public function preview(Request $request)
-    {
-        $preview = $this->file->context('storage.preview', $request->query());
-        if (!$preview) {
-            throw new NotFoundHttpException;
-        }
+    // public function preview(Request $request)
+    // {
+    //     $preview = $this->file->context('storage.preview', $request->query());
+    //     if (!$preview) {
+    //         throw new NotFoundHttpException;
+    //     }
 
-        return response($preview['content'])
-            ->withHeaders($preview['headers']);
-    }
+    //     return response($preview['content'])
+    //         ->withHeaders($preview['headers']);
+    // }
 
     public function download(int $fileId)
     {

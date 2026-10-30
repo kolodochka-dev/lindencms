@@ -1,29 +1,41 @@
 .collection {
-    .collection-head {
+    .collection_head {
         @apply flex items-center justify-between;
 
-        h3 {
-            @apply flex items-center gap-2;
+        h5 {
+            @apply flex items-center gap-2 capitalize;
         }
 
-        .collection-head-icon {
+        .collection_head_icon {
             @apply text-gray-400;
         }
     }
 
-    .collection-body {
+    .collection_body {
         @apply ml-8 mt-2 flex flex-col;
 
-        .collection-items {
+        .collection_items {
             @apply flex flex-col gap-4;
+
+            .collection_item {
+                @apply rounded-xl bg-base-100 border border-border-200 shadow;
+
+                .collection_item_body {
+                    @apply p-3 flex flex-col gap-3;
+                }
+            }
         }
 
-        .collection-items:has(:empty) ~ .collection-empty {
+        .collection_items:has(:empty) ~ .collection_empty {
             @apply hidden;
         }
 
-        .collection-empty {
+        .collection_empty {
             @apply flex flex-col items-center justify-center -ml-8 rounded p-6 border border-border inset-shadow-xs text-gray-400;
+
+            p {
+                @apply text-gray-400;
+            }
         }
     }
 }

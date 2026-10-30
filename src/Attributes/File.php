@@ -9,7 +9,7 @@ class File
         public string $disk = 'public',
         public string $path = '',
         public string $pathPreview = 'preview',
-        public bool $multiple = true,
+        // public bool $multiple = true,
         // public int $maxSize = 10485760, // 10MB default
         // public bool $deduplicate = true,
         // public string $hashAlgo = 'sha256',

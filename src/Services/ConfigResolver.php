@@ -6,12 +6,10 @@ class ConfigResolver
 {
     public function getClass(string $code): string
     {
-        $nodes = config('lindencms.nodes');
-        if (!array_key_exists($code, $nodes)) {
-            throw new \RuntimeException("Node with a code '{$code}' isn't registered");
-        }
+        return config("lindencms.nodes.$code", null);
 
-        return $nodes[$code];
+        // $nodes = config('lindencms.nodes');
+        // return $nodes[$code] ?? null;
     }
 
     public function getCode(string $search)
@@ -23,18 +21,18 @@ class ConfigResolver
             }
         }
 
-        throw new \RuntimeException("Node class '{$search}' isn't registered");
-    }
-
-    public function getCodeOrNull(string $search): ?string
-    {
-        $nodes = config('lindencms.nodes');
-        foreach ($nodes as $code => $class) {
-            if ($class === $search) {
-                return $code;
-            }
-        }
-
         return null;
     }
+
+    // public function getCodeOrNull(string $search): ?string
+    // {
+    //     $nodes = config('lindencms.nodes');
+    //     foreach ($nodes as $code => $class) {
+    //         if ($class === $search) {
+    //             return $code;
+    //         }
+    //     }
+
+    //     return null;
+    // }
 }

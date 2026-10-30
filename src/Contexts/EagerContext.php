@@ -3,30 +3,30 @@
 namespace LindenCMS\Cms\Contexts;
 
 use LindenCMS\Cms\Contracts\EagerLoadable;
-use LindenCMS\Core\Contexts\ComplexContext;
-use LindenCMS\Core\Node;
-use LindenCMS\Cms\Nodes\AppNode;
-use LindenCMS\Cms\Traits\Query;
+use LindenCMS\Cms\Traits\HasQuery;
+use LindenCMS\Core\ComplexContext;
 use Illuminate\Database\Query\Builder;
 
 abstract class EagerContext extends ComplexContext implements EagerLoadable
 {
-    use Query;
-
-    /** @var AppNode */
-    protected Node $node;
+    use HasQuery;
 
     public function selectNestedRows(Builder $query): array
     {
-        $table = $this->node->context('db.schema')->tableName();
+        if (!$this->node->_eager()) {
+            return [];
+        }
+        
+        $table = $this->node->ctx()->schema()->tableName();
         $ids = $query->pluck("$table.id")->toArray();
         $nestedRows = [];
-
-        foreach ($this->node->_eager()?->eager ?? [] as $path) {
+        
+        foreach ($this->node->_eager()->props as $path) {
             $trace = $this->node->structTraceTo($path);
             $traceIds = $ids;
+            // Going deep to the node branch
             foreach ($trace as $traceNode) {
-                $rows = $traceNode->context('db.eager')->fetch($traceIds);
+                $rows = $traceNode->ctx()->db_eager()->fetch($traceIds);
                 $traceIds = array_column($rows, 'id');
                 $nestedRows[$traceNode->getPath()] = $rows;
             }

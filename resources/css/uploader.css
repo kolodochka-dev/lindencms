@@ -1,0 +1,177 @@
+.uploader {
+    .uploader_head {
+        @apply flex justify-between items-center mb-1.5;
+    }
+
+    .uploader_items {
+        @apply flex flex-col gap-4 bg-gray-50 p-4 rounded border border-dashed border-gray-300;
+        
+        .uploader_item {
+            @apply flex flex-col p-3 bg-white border border-gray-300 rounded;
+
+            .uploader_item_body {
+                @apply flex bg-white rounded gap-3;
+
+                img.uploader_item_image {
+                    @apply w-23 h-23 rounded object-cover bg-border-600;
+                }
+
+                .uploader_item_content {
+                    @apply flex flex-col justify-between w-full;
+
+                    .uploader_item_header {
+                        @apply flex flex-col gap-1;
+
+                        .uploader_item_title_row {
+                            @apply flex w-full justify-between;
+
+                            h6 {
+                                @apply text-sm font-medium;
+                            }
+
+                            .uploader_item_dropdown {
+                                @apply text-xs;
+
+                                .uploader_item_dropdown_btn {
+                                    @apply cursor-pointer;
+                                }
+
+                                .uploader_item_dropdown_menu {
+                                    @apply space-y-2 gap-2 bg-base-100 rounded z-1 w-44 p-2 border border-gray-200 shadow-sm;
+
+                                    .uploader_item_dropdown_item {
+                                        @apply flex w-full justify-between items-center gap-1 rounded cursor-pointer border border-gray-200 p-2;
+
+                                        &.text-gray-700 {
+                                            @apply text-gray-700 hover:text-primary;
+                                        }
+
+                                        &.text-error {
+                                            @apply text-gray-700 hover:text-error;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .uploader_item_meta {
+                            @apply flex w-full justify-between;
+
+                            .uploader_item_tags {
+                                @apply flex gap-2;
+
+                                .uploader_item_tag {
+                                    @apply bg-gray-200 text-[10px] font-bold py-0.5 px-1 rounded;
+                                }
+                            }
+                        }
+                    }
+
+                    .uploader_item_footer {
+                        @apply flex w-full justify-between pb-1;
+
+                        .uploader_item_edit_dropdown {
+                            @apply dropdown text-xs;
+
+                            .uploader_item_edit_btn {
+                                @apply cursor-pointer flex items-center gap-1 text-primary;
+                            }
+
+                            .uploader_item_edit_menu {
+                                @apply flex flex-col gap-2 bg-base-100 rounded z-1 w-44 p-2 border border-gray-200 shadow-sm;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .uploader_responsive {
+                @apply mt-3;
+
+                .uploader_responsive_summary {
+                    @apply p-1 px-2 border border-gray-200 rounded rounded-b-none font-semibold flex justify-between items-center cursor-pointer;
+
+                    .uploader_responsive_title {
+                        @apply flex items-center gap-2;
+                    }
+
+                    .uploader_responsive_icon {
+                        @apply transition-transform duration-200;
+                    }
+
+                    .uploader_responsive_icon_open {
+                        @apply rotate-180;
+                    }
+                }
+
+                .uploader_responsive_content {
+                    @apply p-2 border border-gray-200 border-t-0 rounded-b space-y-2 bg-gray-100;
+
+                    .uploader_responsive_item {
+                        @apply flex flex-col p-2 bg-white border border-gray-200 rounded;
+
+                        .uploader_responsive_item_body {
+                            @apply flex gap-3;
+
+                            .uploader_responsive_item_image {
+                                @apply w-16 h-16 rounded object-cover bg-border-600;
+                            }
+
+                            .uploader_responsive_item_content {
+                                @apply flex flex-col justify-between w-full;
+
+                                .uploader_responsive_item_header {
+                                    @apply flex flex-col gap-1;
+
+                                    .uploader_responsive_item_title_row {
+                                        @apply flex w-full justify-between;
+
+                                        h6 {
+                                            @apply text-sm font-medium;
+                                        }
+
+                                        .uploader_responsive_item_dropdown {
+                                            @apply text-xs;
+
+                                            .uploader_responsive_item_dropdown_btn {
+                                                @apply cursor-pointer;
+                                            }
+
+                                            .uploader_responsive_item_dropdown_menu {
+                                                @apply space-y-2 gap-2 bg-base-100 rounded z-1 w-44 p-2 border border-gray-200 shadow-sm;
+
+                                                .uploader_responsive_item_dropdown_item {
+                                                    @apply flex w-full justify-between items-center gap-1 rounded cursor-pointer border border-gray-200 p-2;
+
+                                                    &.text-gray-700 {
+                                                        @apply text-gray-700 hover:text-primary;
+                                                    }
+
+                                                    &.text-error {
+                                                        @apply text-gray-700 hover:text-error;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .uploader_responsive_item_meta {
+                                        @apply flex w-full justify-between;
+
+                                        .uploader_responsive_item_tags {
+                                            @apply flex gap-2;
+
+                                            .uploader_responsive_item_tag {
+                                                @apply bg-gray-200 text-[10px] font-bold py-0.5 px-1 rounded;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

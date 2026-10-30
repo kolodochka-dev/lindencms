@@ -104,7 +104,7 @@
                                             <div class="flex flex-col items-center justify-center py-12 text-center">
                                                 <iconify-icon icon="mdi:database-outline" class="text-5xl text-text-tertiary mb-3"
                                                     width="48" height="48"></iconify-icon>
-                                                <p class="text-text-primary font-medium text-lg">No records found</p>
+                                                <p class="text-text-tertiary font-medium">No {{ strtolower($entity['label']) }} yet</p>
                                                 <p class="text-text-tertiary text-sm mt-1">Create your first record to get started</p>
                                                 <a href="{{ $entity['createLink'] }}"
                                                     class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm rounded-lg transition shadow-sm hover:shadow">

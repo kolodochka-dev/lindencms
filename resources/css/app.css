@@ -1,13 +1,10 @@
 @import 'tailwindcss';
-@import "./tabs.css";
-@import "./forms.css";
-@import "./component.css";
-@import "./collection.css";
-@import "./collection-item.css";
-@import "./sidebar.css";
-@import "./filter.css";
-@import "./table.css";
-@import "./upload.css";
+@import './sidebar.css';
+@import './tabs.css';
+@import './collection.css';
+@import './component.css';
+@import './uploader.css';
+@import './select.css';
 
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -156,7 +153,15 @@
 }
 
 body {
-    @apply text-base-content bg-back-50 text-sm;
+    @apply text-base-content text-sm;
+
+    &.app {
+        @apply flex h-screen overflow-hidden;
+
+        .content {
+            @apply flex-1 flex flex-col overflow-hidden bg-white;
+        }
+    }
 }
 
 header {
@@ -188,5 +193,5 @@ h5 {
 }
 
 h6 {
-    @apply font-semibold text-sm uppercase tracking-wider;
+    @apply font-semibold text-sm uppercase;
 }

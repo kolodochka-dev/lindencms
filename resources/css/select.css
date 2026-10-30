@@ -1,0 +1,33 @@
+.selectSource {
+    @apply flex items-center w-full p-2 gap-2 bg-gray-100 border border-border rounded-md;
+
+    .selectSource_search {
+        .selectSource_search_button {
+            @apply flex items-center cursor-pointer;
+        }
+
+        .dropdown-content {
+            @apply w-100 rounded-lg bg-white min-w-30 border border-border text-xs shadow;
+
+            ul {
+                li {
+                    label {
+                        @apply cursor-pointer hover:bg-gray-100 hover:rounded-lg p-2 flex items-center gap-2;
+                    }
+                }
+            }
+        }
+    }
+
+    .selectSource_selected {
+        @apply flex flex-wrap items-center gap-2;
+
+        .selectSource_selected_item {
+            @apply flex items-center justify-between gap-2 bg-white border border-border rounded-md px-2 py-1 shadow;
+
+            span {
+                @apply flex items-center cursor-pointer text-gray-500 hover:text-black;
+            }
+        }
+    }
+}

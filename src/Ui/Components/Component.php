@@ -1,0 +1,38 @@
+<?php
+
+namespace LindenCMS\Cms\Ui\Components;
+
+use LindenCMS\Cms\Ui\Icon;
+use LindenCMS\Templator\Component as TemplatorComponent;
+
+class Component extends TemplatorComponent
+{
+    public function __construct(
+        public ?string $id = '',
+        public ?string $label = '',
+        public ?string $icon = '',
+        public ?string $class = '',
+    ) {}
+
+    protected function template(): string
+    {
+        $iconHtml = $this->icon
+            ? new Icon(icon: $this->icon, width: 25, height: 25, class: 'head-icon')
+            : '';
+
+        return <<< HTML
+            <div class="component" id="{$this->id}">
+                {$this->if($this->label, "
+                    <div class='component_head'>
+                        $iconHtml
+                        {$this->label}
+                    </div>
+                ")}
+                <div class="component_body">
+                    {$this->slot}
+                </div>
+            </div>
+        HTML;
+        
+    }
+}

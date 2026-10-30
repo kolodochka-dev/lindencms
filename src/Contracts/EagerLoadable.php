@@ -7,16 +7,16 @@ use Illuminate\Database\Query\Builder;
 interface EagerLoadable
 {
     /**
-     * Selects all related rows for nested nodes described by "_eager" attribute
+     * Select all related rows for nested nodes described by "_eager" attribute
      * @param Builder $query
      * @return void
      */
     public function selectNestedRows(Builder $query): array;
 
-    public function fetch(array $ids): array;
+    public function fetch(array $parentIds): array;
 
     /**
-     * Fill node from the selected rows
+     * Fill node from the selected nested rows
      * @param array $nestedRows
      * @return void
      */

@@ -2,28 +2,30 @@
 
 namespace LindenCMS\Cms\Http\Requests;
 
-use LindenCMS\Cms\Contracts\NodeRequestConract;
-use LindenCMS\Core\Node;
-use Illuminate\Foundation\Http\FormRequest;
-use LindenCMS\Cms\Factories\NodeRequestFactory;
-use LindenCMS\Cms\Nodes\AppNode;
 
-class NodeRequest extends FormRequest implements NodeRequestConract
+use LindenCMS\Cms\Factories\NodeFactory;
+use LindenCMS\Cms\Node;
+use Illuminate\Foundation\Http\FormRequest;
+
+class NodeRequest extends FormRequest
 {
     protected bool $shouldAutoValidate = false;
-    protected NodeRequestFactory $nodeFactory;
-    protected ?AppNode $node = null;
+    protected Node $node;
+    protected NodeFactory $factory;
 
-    public function __construct(NodeRequestFactory $nodeFactory, array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null)
+    public function __construct(NodeFactory $nodeFactory, array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null)
     {
-        $this->nodeFactory = $nodeFactory;
-
-        return parent::__construct($query, $request, $attributes, $cookies, $files, $server, $content);
+        parent::__construct($query, $request, $attributes, $cookies, $files, $server, $content);
+        $this->factory = $nodeFactory;
     }
 
-    public function node(): ?Node
+    /**
+     * Return new instance on every call
+     * @return Node
+     */
+    public function node(): Node
     {
-        return $this->node ?? $this->nodeFactory->createFromRequest($this);
+        return $this->node ?? $this->factory->createFromRequest($this);
     }
 
     /**
@@ -52,17 +54,17 @@ class NodeRequest extends FormRequest implements NodeRequestConract
      */
     public function rules(): array
     {
-        return $this->node()->context('valid.rules');
+        return $this->node()->ctx()->valid_rules();
     }
 
     public function messages()
     {
-        return $this->node()->context('valid.messages');
+        return $this->node()->ctx()->valid_messages();
     }
 
     public function attributes()
     {
-        return $this->node()->context('valid.attributes');
+        return $this->node()->ctx()->valid_attributes();
     }
 
     /**
@@ -73,7 +75,7 @@ class NodeRequest extends FormRequest implements NodeRequestConract
         if (!$this->node()) {
             return [];
         }
-        
+
         try {
             $this->validate(
                 $this->rules(),

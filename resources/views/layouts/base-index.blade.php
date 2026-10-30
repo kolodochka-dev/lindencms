@@ -1,7 +1,5 @@
 @extends('cms::layouts.app')
 @section('title', 'Index')
 @section('content')
-    {!! $node->context('html.index', [
-        'paginator' => $paginator,
-    ]) !!}
+    {!! $nodes->ctx()->html_index($paginator) !!}
 @endsection

@@ -1,4 +1,3 @@
-// resources/js/AppManager.js
 class AppManager {
     constructor() {
         this.modules = new Map();
