@@ -23,15 +23,18 @@
     </div>
 
     @php
+        $id = auth()->id();
         $user = LindenCMS\Cms\User::make();
+        $user->ctx()->db_refresh($id);
+
         $userRoute = route('nodes.edit', [
             'code' => $user->code(),
-            'id' => 1,
+            'id' => $user->id->get(),
         ]);
     @endphp
     <div class="profile_section">
         <div class="profile_section_avatar">
-            <img src=""/>
+            <img src="{{ $user->image?->file()?->src() }}"/>
         </div>
         <div class="profile_section_info">
             <p class="profile_section_info_name">{{ $user->name ?? '' }}</p>

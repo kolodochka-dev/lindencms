@@ -13,14 +13,14 @@ use LindenCMS\Cms\Ui\Inputs\SelectSource;
  */
 class Form extends HtmlContext
 {
-    public function __invoke(mixed $data = null)
+    public function __invoke(?array $errors = [])
     {
         $selectedNode = $this->node->node();
 
         $defaults = [
             'name' => $this->node->formName(),
-            'error' => isset($data['errors'][$this->node->getPath()])
-                ? $data['errors'][$this->node->getPath()]
+            'error' => isset($errors[$this->node->getPath()])
+                ? $errors[$this->node->getPath()]
                 : null,
             'values' => $selectedNode ? [
                 [

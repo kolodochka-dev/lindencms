@@ -6,10 +6,10 @@ use LindenCMS\Cms\Contexts\HtmlContext;
 
 class Main extends HtmlContext
 {
-    public function __invoke(mixed $data = null)
+    public function __invoke(?array $errors = [])
     {
         return view('cms::contexts.node.main', [
-            'errors' => $data['errors'] ?? [],
+            'errors' => $errors,
             'node' => $this->node,
         ]);
     }

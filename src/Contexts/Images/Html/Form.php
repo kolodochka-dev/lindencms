@@ -13,7 +13,7 @@ use LindenCMS\Cms\Ui\Uploader\UploaderMulti;
  */
 class Form extends HtmlContext
 {
-    public function __invoke(mixed $data = null)
+    public function __invoke(?array $errors = [])
     {
         return (string) new UploaderMulti($this->node);
     }

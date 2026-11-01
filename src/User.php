@@ -2,6 +2,7 @@
 
 namespace LindenCMS\Cms;
 
+use LindenCMS\Cms\Attributes\Database;
 use LindenCMS\Cms\Attributes\Schema;
 use LindenCMS\Cms\Attributes\Validation;
 use LindenCMS\Cms\Attributes\View;
@@ -13,7 +14,7 @@ use LindenCMS\Cms\Traits\HasBasicSchema;
     icon: 'mynaui:user',
     index: ['name', 'email'],
 )]
-#[Schema(table: 'users', exclude: true)]
+#[Schema(table: 'users')]
 class User extends Node
 {
     use HasBasicSchema;
@@ -23,4 +24,19 @@ class User extends Node
 
     #[Validation('required|email')]
     public _String $email;
+
+    #[View(exclude: true)]
+    #[Database(exclude: true)]
+    public _String $email_verified_at;
+
+    #[View(exclude: true)]
+    #[Database(exclude: true)]
+    public _String $password;
+
+    #[View(exclude: true)]
+    #[Database(exclude: true)]
+    public _String $remember_token;
+
+    #[Schema(table: 'user_images')]
+    public Image $image;
 }

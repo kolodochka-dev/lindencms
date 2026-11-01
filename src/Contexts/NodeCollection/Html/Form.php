@@ -13,7 +13,7 @@ use LindenCMS\Cms\Ui\Collections\Collection;
  */
 class Form extends HtmlContext
 {
-    public function __invoke(mixed $data = null)
+    public function __invoke(?array $errors = [])
     {
         $defaults = [
             'id' => $this->node->getUid(),
@@ -29,7 +29,7 @@ class Form extends HtmlContext
             $this->mr(
                 ...array_map(
                     fn($item) => $item->ctx()->html_collection([
-                        'errors' => $data['errors'] ?? null,
+                        'errors' => $errors ?? null,
                     ]),
                     $this->node->getItems()
                 )

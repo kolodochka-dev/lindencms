@@ -15,7 +15,7 @@ class Collection extends HtmlContext
         );
     }
 
-    public function __invoke(mixed $data = null)
+    public function __invoke(?array $errors = [])
     {
         return (string) new CollectionItem(
             id: $this->node->getUid(),
@@ -24,7 +24,7 @@ class Collection extends HtmlContext
         )->slot(
             $this->mr(
                 $this->loop($this->related(), fn($item) => $item->html_form([
-                    'errors' => $data['errors'] ?? null,
+                    'errors' => $errors ?? null,
                 ])),
                 new Hidden($this->node->id->formName(), $this->node->id->get()),
                 new Hidden($this->node->created_at->formName(), $this->node->created_at->get()),

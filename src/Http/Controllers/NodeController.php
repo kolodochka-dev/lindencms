@@ -94,7 +94,7 @@ class NodeController extends Controller
     {
         $node = $request->node();
         if ($request->header('HX-Request')) {
-            return $node->html_edit();
+            return $node->ctx()->html_edit();
         }
 
         return view('cms::layouts.base-edit', [
@@ -106,9 +106,7 @@ class NodeController extends Controller
     {
         $node = $request->node();
         if ($errors = $request->validateNode()) {
-            return $node->html_edit([
-                'errors' => $errors,
-            ]);
+            return $node->ctx()->html_edit(errors: $errors);
         }
 
         $node->ctx()->db_save($request->post($node->toSnakeCase(), []));
@@ -116,7 +114,7 @@ class NodeController extends Controller
         return Response::htmxReplaceUrl(route('nodes.edit', [
             'code' => $node->code(),
             'id' => $node->id->get(),
-        ]), $node->html_edit());
+        ]), $node->ctx()->html_edit());
     }
 
     public function edit(NodeRequest $request, string $code, int $id)
@@ -127,7 +125,7 @@ class NodeController extends Controller
         }
 
         if ($request->header('HX-Request')) {
-            return $node->html_edit();
+            return $node->ctx()->html_edit();
         }
 
         return view('cms::layouts.base-edit', [
@@ -139,14 +137,12 @@ class NodeController extends Controller
     {
         $node = $request->node();
         if ($errors = $request->validateNode()) {
-            return $node->html_edit([
-                'errors' => $errors,
-            ]);
+            return $node->ctx()->html_edit(errors: $errors);
         }
 
         $node->ctx()->db_save($request->post($node->toSnakeCase(), []));
 
-        return $node->html_edit();
+        return $node->ctx()->html_edit();
     }
 
     public function delete(NodeRequest $request, string $code, int $id)

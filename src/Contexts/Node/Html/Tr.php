@@ -9,7 +9,7 @@ use LindenCMS\Cms\Ui\Buttons\ButtonEdit;
 
 class Tr extends HtmlContext
 {
-    public function __invoke(mixed $data = null)
+    public function __invoke()
     {
         $editButton = new ButtonEdit(link: route('nodes.edit', [
             'code' => $this->node->code(),

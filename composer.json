@@ -6,8 +6,8 @@
         "php": "^8.5",
         "laravel/fortify": "^1.37",
         "intervention/image": "^3.11",
-        "lindencms/templator": "^0.1.0",
-        "lindencms/core": "^0.1.0",
+        "lindencms/templator": "^0.5",
+        "lindencms/core": "^0.5",
         "brick/math": "^0.14.2 || ^0.15 || ^0.16 || ^0.17 || ^0.18"
     },
     "license": "MIT",

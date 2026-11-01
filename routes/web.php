@@ -5,7 +5,7 @@ use LindenCMS\Cms\Http\Controllers\HtmxController;
 use LindenCMS\Cms\Http\Controllers\NodeController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix(config('lindencms.route_prefix'))->middleware(['web'/* , 'auth' */])->group(function () {
+Route::prefix(config('lindencms.route_prefix'))->middleware(['web', 'auth'])->group(function () {
     Route::get('/', [NodeController::class, 'dashboard'])->name('dashboard');
     Route::post('/htmx/{method}', HtmxController::class)->name('htmx');
 

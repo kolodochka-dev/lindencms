@@ -8,8 +8,8 @@ class Rules extends Context
 {
     public function related(): array
     {
-        return $this->node->props(
-            fn($item) => !$item->_validation()?->exclude
+        return $this->node->getChildren(
+            // fn($item) => !$item->_validation()?->exclude
         );
     }
 
