@@ -59,7 +59,7 @@ class NodeController extends Controller
         $nodes = IndexCollection::make();
         $nodes->setType($node);
 
-        ['paginator' => $paginator] = $nodes->ctx()->db_refresh([
+        ['paginator' => $paginator] = $nodes->ctx()->db_refresh(pagination: [
             "page" => $filters->page,
             "perPage" => $filters->perPage,
             "path" => route('nodes.index', [$code]),
