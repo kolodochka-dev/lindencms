@@ -24,7 +24,7 @@ class _BelongsTo extends _Int
 
         if (!$this->node) {
             $this->node = $this->_relation()->with::make();
-            $this->node->ctx()->db_refresh($this->get());
+            $this->node->ctx()->db_refresh(id: $this->get());
         }
 
         return $this->node;

@@ -55,7 +55,7 @@ class Refresh extends DatabaseContext
             $item = $parent
                 ? $prototype::class::make($parent, $parentProperyName)
                 : $prototype::class::make();
-            $item->ctx()->db_refresh($row->id);
+            $item->ctx()->db_refresh(id: $row->id);
             // $item->fill($row);
             $this->node->add($item);
         }

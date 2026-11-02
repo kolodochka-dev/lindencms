@@ -25,7 +25,7 @@
     @php
         $id = auth()->id();
         $user = LindenCMS\Cms\User::make();
-        $user->ctx()->db_refresh($id);
+        $user->ctx()->db_refresh(id: $id);
 
         $userRoute = route('nodes.edit', [
             'code' => $user->code(),

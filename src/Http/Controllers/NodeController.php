@@ -69,7 +69,7 @@ class NodeController extends Controller
         ]);
 
         if ($request->header('HX-Request')) {
-            return $nodes->ctx()->html_index($paginator);
+            return $nodes->ctx()->html_index(paginator: $paginator);
         }
 
         return view('cms::layouts.base-index', [
@@ -120,7 +120,7 @@ class NodeController extends Controller
     public function edit(NodeRequest $request, string $code, int $id)
     {
         $node = $request->node();
-        if (!$node->ctx()->db_refresh($id)) {
+        if (!$node->ctx()->db_refresh(id: $id)) {
             abort(404);
         }
 

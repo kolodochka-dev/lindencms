@@ -16,7 +16,7 @@ class FileController extends Controller
         Request $request,
     ) {
         $file = File::make();
-        if (!$file->ctx()->db_refresh($request->route('fileId'))) {
+        if (!$file->ctx()->db_refresh(id: $request->route('fileId'))) {
             throw new NotFoundHttpException;
         }
 
