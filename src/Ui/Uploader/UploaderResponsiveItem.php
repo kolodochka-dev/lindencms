@@ -43,7 +43,7 @@ class UploaderResponsiveItem extends Component
                                         <a href="{$file->src()}" target="_blank" class="uploader_responsive_item_dropdown_item text-gray-700">
                                             Open {$this->getIcon('open')}
                                         </a>
-                                        <button {$this->pl($this->root->ctx()->htmx_deleteResponsive($key, $uploaderItemKey))} class="uploader_responsive_item_dropdown_item text-error">
+                                        <button {$this->pl($this->root->ctx()->htmx_deleteResponsive(key: $key, imageKey: $uploaderItemKey))} class="uploader_responsive_item_dropdown_item text-error">
                                             Delete {$this->getIcon('delete')}
                                         </button>
                                     </div>

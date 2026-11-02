@@ -16,7 +16,7 @@
                         $node = $nodeClass::make();
                     @endphp
 
-                    {!! $node->ctx()->html_sidebarLink(request()->route('code') == $node->code() ? 'active' : '') !!}
+                    {!! $node->ctx()->html_sidebarLink(class: request()->route('code') == $node->code() ? 'active' : '') !!}
                 @endforeach
             @endforeach
         </nav>

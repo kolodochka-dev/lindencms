@@ -109,7 +109,7 @@ class NodeController extends Controller
             return $node->ctx()->html_edit(errors: $errors);
         }
 
-        $node->ctx()->db_save($request->post($node->toSnakeCase(), []));
+        $node->ctx()->db_save(data: $request->post($node->toSnakeCase(), []));
 
         return Response::htmxReplaceUrl(route('nodes.edit', [
             'code' => $node->code(),
@@ -140,7 +140,7 @@ class NodeController extends Controller
             return $node->ctx()->html_edit(errors: $errors);
         }
 
-        $node->ctx()->db_save($request->post($node->toSnakeCase(), []));
+        $node->ctx()->db_save(data: $request->post($node->toSnakeCase(), []));
 
         return $node->ctx()->html_edit();
     }

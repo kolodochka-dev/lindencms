@@ -34,6 +34,6 @@ class Save extends NodeSave
             parent::__invoke($data);
         }
 
-        $this->node->responsiveVersions->ctx()->db_save($relatedNodeFk, $relatedNode->id->get());
+        $this->node->responsiveVersions->ctx()->db_save(relatedFk: $relatedNodeFk, relatedId: $relatedNode->id->get());
     }
 }

@@ -33,7 +33,7 @@ class HtmxController extends Controller
         }
 
         // context <- data, Request
-        return $node->ctx()->$context($data, $request);
+        return $node->ctx()->$context(data: $data, request: $request);
     }
 
     // private function addCollectionItem(NodeRequest $request)
