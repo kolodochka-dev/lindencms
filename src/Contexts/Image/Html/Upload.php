@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
  */
 class Upload extends HtmlContext
 {
-    public function __invoke(mixed $data = null, ?Request $request = null): string
+    public function __invoke(mixed $data = null, ?Request $request = null)
     {
         $file = $this->upload($request);
         if (!$file) {
