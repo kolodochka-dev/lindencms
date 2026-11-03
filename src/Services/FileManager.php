@@ -51,7 +51,7 @@ class FileManager
                     $attr->disk
                 );
                 if ($filepath) {
-                    $fileNode->ctx()->db_save([
+                    $fileNode->ctx()->db_save(data: [
                         'filename' => $filename,
                         'filepath' => $filepath,
                         'size' => $file->getSize(),
