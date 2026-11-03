@@ -30,7 +30,6 @@ class Form extends HtmlContext
             ] : [],
             'id' => $this->node->getUid(),
             'label' => $this->node->_view()?->label ?? $this->node->getParentPropertyName(),
-            // 'labelSelected' => $labelSelected,
             'required' => $this->node->_view()?->required,
             'hidden' => $this->node->_view()?->hidden,
             'readonly' => $this->node->_view()?->readonly,
@@ -38,7 +37,6 @@ class Form extends HtmlContext
             'icon' => $this->node->_view()?->icon,
             'inline' => false,
             'htmx' => $this->node->ctx()->htmx_options(),
-            // 'htmxCallback' => fn(string $targetList) => $this->node->ctx()->htmx_options($targetList),
         ];
 
         return (string) new SelectSource(

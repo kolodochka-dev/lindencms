@@ -15,7 +15,7 @@ class Save extends DatabaseContext
 
     public function __invoke(mixed $data = null)
     {
-        $row = $this->node->ctx()->db_row($data);
+        $row = $this->node->ctx()->db_row(data: $data);
 
         if ($this->node->id->get()) {
             // Update

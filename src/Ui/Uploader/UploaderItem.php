@@ -43,14 +43,14 @@ class UploaderItem extends Component
                                         <a href="{$file->src()}" target="_blank" class="uploader_item_dropdown_item text-gray-700">
                                             Open {$this->getIcon('open')}
                                         </a>
-                                        <form {$this->pl($this->root->ctx()->htmx_uploadResponsive($key))}</form>
+                                        <form {$this->pl($this->root->ctx()->htmx_uploadResponsive(key: $key))}</form>
                                             <button class="uploader_item_dropdown_item text-gray-700" onclick="event.preventDefault();this.closest('form').querySelector('.uploader_file').click()">
                                                 Responsive {$this->getIcon('responsive')}
                                             </button>
                                             <input type="file" name="files[]" class="uploader_file hidden" accept="{$this->root->accept()}"/>
                                             <input type="hidden" name="_token" value="{$this->pl(csrf_token())}">
                                         </form>
-                                        <button {$this->pl($this->root->ctx()->htmx_delete($key))} class="uploader_item_dropdown_item text-error">
+                                        <button {$this->pl($this->root->ctx()->htmx_delete(data: $key))} class="uploader_item_dropdown_item text-error">
                                             Delete {$this->getIcon('delete')}
                                         </button>
                                     </div>

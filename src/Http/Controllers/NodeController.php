@@ -148,7 +148,7 @@ class NodeController extends Controller
     public function delete(NodeRequest $request, string $code, int $id)
     {
         $node = $request->node();
-        $node->ctx()->db_delete($id);
+        $node->ctx()->db_delete(id: $id);
 
         return Response::htmxRedirect(route('nodes.index', $code));
     }
