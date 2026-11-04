@@ -20,7 +20,7 @@ class Save extends DatabaseContext
 
         foreach ($this->node as $key => $item) {
             $item->setParent($parent, $parentPropertyName);
-            $item->ctx()->db_save(id: $data[$key] ?? []);
+            $item->ctx()->db_save(data: $data[$key] ?? []);
             $this->node->add($item);
             $actualIds[] = $item->id->get();
         }
