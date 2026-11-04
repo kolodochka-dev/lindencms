@@ -23,7 +23,7 @@ class Collection extends HtmlContext
             icon: $this->node->_view()?->icon,
         )->slot(
             $this->mr(
-                $this->loop($this->related(), fn($item) => $item->html_form(errors: $errors ?? null)),
+                $this->loop($this->related(), fn($item) => $item->ctx()->html_form(errors: $errors ?? null)),
                 new Hidden($this->node->id->formName(), $this->node->id->get()),
                 new Hidden($this->node->created_at->formName(), $this->node->created_at->get()),
             )
