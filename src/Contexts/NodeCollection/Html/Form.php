@@ -26,11 +26,8 @@ class Form extends HtmlContext
         return new Collection(
             ...collect($defaults)->map(fn ($default, $key) => $data[$key] ?? $default)
         )->slot(
-            $this->mr(
-                ...array_map(
-                    fn($item) => $item->ctx()->html_collection([
-                        'errors' => $errors ?? null,
-                    ]),
+            $this->mr(...array_map(
+                    fn($item) => $item->ctx()->html_collection(errors: $errors ?? null),
                     $this->node->getItems()
                 )
             )
