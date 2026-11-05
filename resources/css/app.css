@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'quill/dist/quill.snow.css';
 @import './sidebar.css';
 @import './tabs.css';
 @import './collection.css';

@@ -1,19 +1,19 @@
 <?php
 
-namespace LindenCMS\Cms\Ui\Forms\Inputs;
+namespace LindenCMS\Cms\Ui\Inputs;
 
-class Toggle extends Input
+use LindenCMS\Templator\Component;
+
+class Text extends Component
 {
     public function __construct(
         public string $name = '',
         public string $id = '',
-        // filled value from Db
         public ?string $value = '',
-        // html value attribute
-        public ?string $option = '',
         public ?string $label = '',
+        public ?string $type = 'text',
+        public ?string $placeholder = '',
         public mixed $error = null,
-        public ?bool $checked = false,
         public ?bool $required = false,
         public ?bool $hidden = false,
         public ?bool $readonly = false,
@@ -23,27 +23,41 @@ class Toggle extends Input
         public ?string $class = '',
         public ?bool $inline = false,
     ) {
+        if (!$this->placeholder) {
+            $this->placeholder = $this->label;
+        }
+    }
+
+    public function __toString(): string
+    {
+        if ($this->inline) {
+            return $this->template();
+        }
+
+        return (string) new Group(
+            for: $this->id,
+            label: $this->label,
+            hidden: $this->hidden,
+        )->slot($this->template());
     }
 
     protected function template(): string
     {
         $error = $this->error
-            ? 'textarea-error'
-            : 'focus:textarea-primary';
+            ? 'input-error'
+            : 'focus:input-primary';
 
         return <<<HTML
-            <input
-                value="{$this->option}" 
+            <textarea 
                 name="{$this->name}"
                 id="{$this->id}"
-                class="toggle toggle-sm toggle-primary font-normal {$error}"
-                type="checkbox"
+                class="textarea textarea-sm text-sm w-full font-normal {$error}"
+                type="{$this->type}" 
                 autocomplete="off"
-                {$this->if($this->checked || $this->value == $this->option, "checked")}
+                placeholder="{$this->placeholder}"
                 {$this->if($this->readonly, "readonly")}
                 {$this->if($this->disabled, "disabled")}
-            />
-           
+            >{$this->pl($this->value)}</textarea>
             {$this->if($this->error, "<p class='label text-error mt-1 text-xs font-bold'>{$this->error}</p>")}
         HTML;
     }

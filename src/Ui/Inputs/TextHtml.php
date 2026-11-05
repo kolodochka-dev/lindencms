@@ -1,9 +1,23 @@
 <?php
 
-namespace LindenCMS\Cms\Ui\Forms\Inputs;
+namespace LindenCMS\Cms\Ui\Inputs;
 
-class QuillRichText extends Input
+class TextHtml extends Input
 {
+    public function __toString(): string
+    {
+        if ($this->inline) {
+            return $this->template();
+        }
+
+        return (string) new Group(
+            for: $this->id,
+            label: $this->label,
+            hidden: $this->hidden,
+            tag: 'div',
+        )->slot($this->template());
+    }
+
     protected function template(): string
     {
         $error = $this->error
@@ -21,7 +35,7 @@ class QuillRichText extends Input
             <textarea
                 name="{$this->name}"
                 id="{$this->id}-textarea"
-                class="hidden!"
+                class="hidden"
                 {$this->if($this->readonly, "readonly")}
                 {$this->if($this->disabled, "disabled")}
             >{$this->value}</textarea>

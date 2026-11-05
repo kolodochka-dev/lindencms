@@ -9,6 +9,7 @@ use LindenCMS\Cms\Services\FileManager;
 use LindenCMS\Cms\Ui\Uploader\Uploader;
 use LindenCMS\Cms\Ui\Uploader\UploaderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Summary of Upload
@@ -19,6 +20,16 @@ class Upload extends HtmlContext
 {
     public function __invoke(mixed $data = null, ?Request $request = null)
     {
+        $rules = $this->node->_validation()->rules;
+        if ($rules) {
+            $validator = Validator::make($request->all(), ['files.*' => $rules]);
+
+            if ($validator->fails()) {
+                $errors = $validator->errors();
+                return $this->node->ctx()->html_form(errors: $errors->all());
+            }
+        }
+
         $file = $this->upload($request);
         if (!$file) {
             throw new \Exception("Failed to upload file");

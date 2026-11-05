@@ -13,6 +13,7 @@ class UploaderMulti extends Component
 {
     public function __construct(
         public Images $images,
+        public ?array $errors = [],
     ) {
     }
 
@@ -38,9 +39,11 @@ class UploaderMulti extends Component
                         <input type="hidden" name="_token" value="{$this->pl(csrf_token())}">
                     </form>
                 </div>
-                <div class="uploader_items">
+                <div class="uploader_items uploader_items{$this->if($this->errors, '-error')}">
                     {$this->loop($this->images->getItems(), fn (Image $image) => new UploaderItem($image, $this->images), new EmptyState)}
                 </div>
+
+                {$this->if($this->errors, "<p class='label text-error mt-1 text-xs font-bold'>{$this->pl(implode(',', $this->errors))}</p>")}
             </div>
         HTML;
     }

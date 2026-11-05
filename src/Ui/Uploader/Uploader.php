@@ -12,6 +12,7 @@ class Uploader extends Component
 {
     public function __construct(
         public Image $image,
+        public ?array $errors = [],
     ) {
     }
 
@@ -37,9 +38,11 @@ class Uploader extends Component
                         <input type="hidden" name="_token" value="{$this->pl(csrf_token())}">
                     </form>
                 </div>
-                <div class="uploader_items">
+                <div class="uploader_items uploader_items{$this->if($this->errors, '-error')}">
                     {$this->if($this->image->file->get(), fn () => new UploaderItem($this->image, $this->image), new EmptyState)}
                 </div>
+
+                {$this->if($this->errors, "<p class='label text-error mt-1 text-xs font-bold'>{$this->pl(implode(',', $this->errors))}</p>")}
             </div>
         HTML;
     }

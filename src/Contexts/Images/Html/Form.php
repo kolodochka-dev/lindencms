@@ -15,6 +15,6 @@ class Form extends HtmlContext
 {
     public function __invoke(?array $errors = [])
     {
-        return (string) new UploaderMulti($this->node);
+        return (string) new UploaderMulti($this->node, $errors);
     }
 }
