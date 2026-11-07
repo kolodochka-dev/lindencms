@@ -6,7 +6,6 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                // 'resources/css/app.css',
                 'resources/js/app.js',
             ],
             publicDirectory: 'public',
@@ -14,6 +13,14 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    // Добавьте эту секцию
+    server: {
+        host: 'lindenrebuild-test.test', // Ваш домен Laragon
+        port: 5174, // Порт, который вы используете
+        hmr: {
+            host: 'lindenrebuild-test.test', // Домен для WebSocket
+        },
+    },
     build: {
         rollupOptions: {
             output: {
@@ -22,5 +29,5 @@ export default defineConfig({
                 assetFileNames: `assets/[name].[ext]`,
             },
         },
-    },
+    }
 });

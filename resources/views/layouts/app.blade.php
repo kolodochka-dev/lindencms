@@ -13,8 +13,9 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/multi-swap.js"></script>
 
-    <link href="{{ asset('vendor/lindencms/cms/assets/app.css') }}" rel="stylesheet">
     <!-- <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.2/dist/iconify-icon.min.js"></script> -->
+     
+    <link href="{{ asset('vendor/lindencms/cms/assets/app.css') }}" rel="stylesheet">
     <script src="{{ asset('vendor/lindencms/cms/assets/app.js') }}" type="module"></script>
 </head>
 

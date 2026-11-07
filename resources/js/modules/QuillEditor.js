@@ -4,6 +4,8 @@ import Quill from 'quill';
 
 export class QuillEditor extends Module {
     onLoaded() {
+        // this.bind();
+        // this.bindHtmx();
         this.load();
 
         // Handle HTMX dynamic content loading
@@ -24,6 +26,32 @@ export class QuillEditor extends Module {
         });
 
         document.body.addEventListener('htmx:historyRestore', () => this.load());
+
+        document.body.addEventListener('htmx:configRequest', function (event) {
+            // Check if this is a save request
+            if (event.detail.elt.closest('[hx-post]')) {
+                // Find all Quill editors
+                const quillEditors = document.querySelectorAll('.quill-editor');
+
+                quillEditors.forEach((editor) => {
+                    if (editor && editor.quill) {
+                        // Get the specific field name from data-name attribute
+                        const fieldName = editor.dataset.name;
+                        const content = editor.quill.root.innerHTML;
+
+                        event.detail.parameters[fieldName] = content;
+                    }
+                });
+            }
+        });
+    }
+
+    bind() {
+        this.load();
+    }
+
+    bindHtmx() {
+        document.addEventListener('htmx:load', () => this.bind());
 
         // Add every quill editors to the HTMX request parameters
         document.body.addEventListener('htmx:configRequest', function (event) {
@@ -46,9 +74,12 @@ export class QuillEditor extends Module {
     }
 
     load() {
-        const editors = document.querySelectorAll('.quill-editor');
+        // const editors = document.querySelectorAll('.quill-editor');
+        const editors = document.querySelectorAll('.quill-editor:not([data-quill-ready])');
 
         editors.forEach(element => {
+            element.dataset.quillReady = 'true';
+
             // Skip if already initialized
             if (element.quill) return;
 
@@ -106,8 +137,6 @@ export class QuillEditor extends Module {
 
             // Store reference
             element.quill = quill;
-
-            console.log('✅ Quill editor initialized for:', element.dataset.name);
         });
     }
 }
