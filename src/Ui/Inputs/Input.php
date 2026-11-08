@@ -49,7 +49,7 @@ class Input extends Component
 
         return <<< HTML
             <input 
-                value="{$this->pl($this->value)}"
+                value="{$this->pl($this->e($this->value))}"
                 name="{$this->name}"
                 id="{$this->id}"
                 class="input input-sm text-sm w-full font-normal {$error}"

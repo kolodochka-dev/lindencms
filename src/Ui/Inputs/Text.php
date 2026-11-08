@@ -57,7 +57,7 @@ class Text extends Component
                 placeholder="{$this->placeholder}"
                 {$this->if($this->readonly, "readonly")}
                 {$this->if($this->disabled, "disabled")}
-            >{$this->pl($this->value)}</textarea>
+            >{$this->pl($this->e($this->value))}</textarea>
             {$this->if($this->error, "<p class='label text-error mt-1 text-xs font-bold'>{$this->error}</p>")}
         HTML;
     }
