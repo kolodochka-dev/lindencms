@@ -20,7 +20,7 @@ class Upload extends HtmlContext
 {
     public function __invoke(mixed $data = null, ?Request $request = null)
     {
-        $rules = $this->node->_validation()->rules;
+        $rules = $this->node->_validation()?->rules;
         if ($rules) {
             $validator = Validator::make($request->all(), ['files.*' => $rules]);
 

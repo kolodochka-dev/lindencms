@@ -24,7 +24,7 @@ class Tr extends HtmlContext
                     {$this->node->id->get()}
                     <input name="ids[]" value="{$this->node->id->get()}" type="checkbox" autocomplete="off" class="hidden"/>
                 </th>
-                {$this->loop($this->node->_view()->index, fn($path) => "<td>{$this->node->structPath($path)?->get()}</td>")}
+                {$this->loop($this->node->_view()->index, fn($path) => "<td>{$this->e($this->node->structPath($path)?->get())}</td>")}
                 <td class="flex items-center gap-2">
                     {$editButton}
                     {$deleteButton}
