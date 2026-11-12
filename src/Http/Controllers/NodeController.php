@@ -48,7 +48,7 @@ class NodeController extends Controller
     {
         $node = $request->node();
         if ($node->_view()?->singlePage) {
-            $redirect = ($id = $node->db_query()->orderBy('id')->last()?->id)
+            $redirect = ($id = $node->db_query()->latest('id')->first()?->id)
                 ? route('nodes.edit', [$code, $id])
                 : route('nodes.create', $code);
 
