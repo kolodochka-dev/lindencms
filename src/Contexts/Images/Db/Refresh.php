@@ -33,5 +33,8 @@ class Refresh extends DatabaseContext
             $item->responsiveVersions->fill($responsiveRows);
             $this->node->add($item);
         }
+
+        // Restore Parent link to the Node
+        $this->node->setParent($this->node->getParent(), $this->node->getParentPropertyName());
     }
 }
