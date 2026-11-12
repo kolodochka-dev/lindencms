@@ -1,24 +1,14 @@
 <?php
 
-namespace LindenCMS\Cms\Nodes;
+namespace LindenCMS\Cms;
 
-use LindenCMS\Cms\Contexts\Page\Html\PageContext;
-use LindenCMS\Cms\Exceptions\LoadException;
-use LindenCMS\Core\Node;
+use LindenCMS\Cms\Exceptions\PageLoadException;
 use LindenCMS\Cms\Traits\HasAttributes;
 use Illuminate\Http\Request;
 
 abstract class Page extends Node
 {
     use HasAttributes;
-
-    public function __construct()
-    {
-        $this->contexts = [
-            // Html
-            'html.page' => PageContext::class,
-        ];
-    }
 
     public function __invoke(Request $request)
     {
@@ -32,7 +22,7 @@ abstract class Page extends Node
                 $child->setParent(null);
                 try {
                     $loader($child, $request);
-                } catch (LoadException $e) {
+                } catch (PageLoadException $e) {
                     return $e->getResponse() ?? abort(404);
                 }
 
@@ -40,6 +30,6 @@ abstract class Page extends Node
             }
         }
 
-        return $page->context('html.page');
+        return $page->ctx()->html_page();
     }
 }
