@@ -14,7 +14,7 @@ use LindenCMS\Cms\Ui\Uploader\Uploader;
  */
 class Delete extends HtmxContext
 {
-    public function __invoke(mixed $data = null)
+    public function __invoke(?string $key = null)
     {
         return $this->buildRequestContext('html_delete', [], [
             'hx-trigger' => 'click',
