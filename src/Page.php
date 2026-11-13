@@ -10,6 +10,11 @@ abstract class Page extends Node
 {
     use HasAttributes;
 
+    public static function contextsDir()
+    {
+        return class_basename(self::class);
+    }
+
     public function __invoke(Request $request)
     {
         $page = static::make();

@@ -3,10 +3,10 @@
 namespace LindenCMS\Cms\Contexts\Page\Html;
 
 use LindenCMS\Cms\Contexts\HtmlContext;
-use LindenCMS\Cms\Page;
+use LindenCMS\Cms\Page as PageNode;
 
 /**
- * @property Page $node
+ * @property PageNode $node
  */
 class Page extends HtmlContext
 {
