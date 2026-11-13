@@ -8,7 +8,7 @@ use LindenCMS\Cms\Page;
 /**
  * @property Page $node
  */
-class PageContext extends HtmlContext
+class Page extends HtmlContext
 {
     public function __invoke(): mixed
     {
