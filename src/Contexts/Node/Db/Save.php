@@ -38,7 +38,9 @@ class Save extends DatabaseContext
         }
 
         foreach ($this->related() as $related) {
-            $related->ctx()->db_save(data: $data[$related->getParentPropertyName()] ?? []);
+            if (isset($data[$related->getParentPropertyName()])) {
+                $related->ctx()->db_save(data: $data[$related->getParentPropertyName()]);
+            }
         }
     }
 }
