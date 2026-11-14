@@ -26,7 +26,7 @@ abstract class Page extends Node
             if ($loader = $child->_load()?->fromRequest) {
                 $child->setParent(null);
                 try {
-                    $loader($child, $request);
+                    $loader($child, $this, $request);
                 } catch (PageLoadException $e) {
                     return $e->getResponse() ?? abort(404);
                 }
