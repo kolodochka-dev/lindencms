@@ -43,7 +43,7 @@ class Select extends Component
             return $this->template();
         }
         
-        return (string) new Group($this->id, $this->label, $this->hidden)
+        return (string) new Group($this->id, $this->label, $this->hidden, 'div')
             ->slot($this->template());
     }
 
