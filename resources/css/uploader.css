@@ -78,7 +78,11 @@
                             }
 
                             .uploader_item_edit_menu {
-                                @apply flex flex-col gap-2 bg-base-100 rounded z-1 w-44 p-2 border border-gray-200 shadow-sm;
+                                @apply space-y-2 bg-base-100 rounded z-1 w-84 p-2 border border-gray-200 shadow-sm;
+
+                                /* .uploader_item_edit_menu_item {
+                                    @apply 
+                                } */
                             }
                         }
                     }
@@ -92,7 +96,7 @@
                     @apply p-1 px-2 border border-gray-200 rounded rounded-b-none font-semibold flex justify-between items-center cursor-pointer;
 
                     .uploader_responsive_title {
-                        @apply flex items-center gap-2;
+                        @apply flex items-center gap-2 select-none;
                     }
 
                     .uploader_responsive_icon {

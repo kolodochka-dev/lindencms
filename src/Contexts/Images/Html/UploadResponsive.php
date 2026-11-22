@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
  */
 class UploadResponsive extends HtmlContext
 {
-    public function __invoke(string $key = '', ?Request $request = null): string
+    public function __invoke(string $data = '', ?Request $request = null): string
     {
         $files = $this->upload($request);
         if (!$files) {
@@ -28,7 +28,7 @@ class UploadResponsive extends HtmlContext
         /**
          * @var Image
          */
-        $image = $this->node->prop(fn ($item) => $item->getParentPropertyName() === $key);
+        $image = $this->node->prop(fn ($item) => $item->getParentPropertyName() === $data);
         if (!$image) {
             throw new \Exception("Failed find uploaded Image");
         }

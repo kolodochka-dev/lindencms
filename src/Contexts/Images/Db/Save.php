@@ -20,10 +20,16 @@ class Save extends DatabaseContext
         $savedImages = [];
 
         foreach ($this->node as $image) {
+            $editable = [];
+            foreach ($image->editableProps() as $item) {
+                $editable[$item->getParentPropertyName()] = $item->get();
+            }
+
             $this->saveOrUpdate($image, [
                 'file' => $image->file->get(),
                 'is_root' => true,
                 $relatedNodeFk => $relatedNodeId,
+                ...$editable,
             ]);
 
             foreach ($image->responsiveVersions as $responsiveImage) {

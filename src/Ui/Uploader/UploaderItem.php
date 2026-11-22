@@ -23,6 +23,7 @@ class UploaderItem extends Component
         $responsiveImages = $this->image->responsiveVersions->getItems();
         $file = $this->image->file();
         $key = $this->image->getParentPropertyName();
+        $editable = $this->image->editableProps();
 
         return <<<HTML
             <div class="uploader_item">
@@ -68,6 +69,7 @@ class UploaderItem extends Component
                                     {$this->getIcon('edit')} Edit
                                 </div>
                                 <div tabindex="-1" class="dropdown-content uploader_item_edit_menu">
+                                    {$this->loop($editable, fn ($item) => "<div class=\"uploader_item_edit_menu_item\">{$item->ctx()->html_form()}</div>")}
                                 </div>
                             </div>
                         </div>

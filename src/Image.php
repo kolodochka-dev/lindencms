@@ -31,6 +31,7 @@ class Image extends Node
 
     protected ?File $fileNode = null;
 
+    // *_width, *_height fields used in responsive versions ONLY
     #[View(label: 'Min width', options: static function (array $config) {
         return $config['resolution_breakpoints'];
     })]
@@ -50,6 +51,9 @@ class Image extends Node
         return $config['resolution_breakpoints'];
     })]
     public _Select $max_height;
+
+    #[View(label: 'Alt')]
+    public _String $alt;
 
     public function file(): ?File
     {
@@ -73,5 +77,12 @@ class Image extends Node
     public function accept()
     {
         return implode(',', $this->_view()?->accept ?? config('lindencms.storage_default_accept'));
+    }
+
+    public function editableProps()
+    {
+        return [
+            $this->alt,
+        ];
     }
 }

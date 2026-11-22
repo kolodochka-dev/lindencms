@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
  */
 class Delete extends HtmlContext
 {
-    public function __invoke(mixed $key): string
+    public function __invoke(mixed $data): string
     {
-        $this->node->remove($key);
+        $this->node->remove($data);
         return $this->node->ctx()->html_form();
     }
 }

@@ -149,12 +149,20 @@ class Schema extends ComplexContext implements SchemaGeneratable
             $column->default($attr->default);
         }
 
+        $tableName = $this->tableName();
+
         if ($attr->index && !$attr->unique) {
-            $column->index();
+            $indexName = "{$tableName}_{$name}_index";
+            if (!SchemaFacade::hasIndex($tableName, $indexName)) {
+                $column->index();
+            }
         }
 
         if ($attr->unique) {
-            $column->unique();
+            $indexName = "{$tableName}_{$name}_unique";
+            if (!SchemaFacade::hasIndex($tableName, $indexName)) {
+                $column->unique();
+            }
         }
 
         return $column;
