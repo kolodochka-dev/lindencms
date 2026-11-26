@@ -23,7 +23,7 @@ abstract class Page extends Node
          * @var AppNode|AppNodeCollection $child
          */
         foreach ($page->getChildren() as $key => $child) {
-            if ($loader = $child->_load()?->fromRequest) {
+            if ($loader = $child->_load()?->loader) {
                 $child->setParent(null);
                 try {
                     $loader($child, $page, $request);
