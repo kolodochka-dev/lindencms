@@ -11,6 +11,8 @@ use LindenCMS\Cms\Attributes\View;
 use LindenCMS\Cms\Attributes\Validation;
 use LindenCMS\Cms\Attributes\File;
 use LindenCMS\Cms\Attributes\Load;
+use LindenCMS\Cms\Attributes\LoadFirst;
+use LindenCMS\Cms\Attributes\LoadAll;
 
 trait HasAttributes
 {
@@ -52,6 +54,16 @@ trait HasAttributes
     public function _load(): ?Load
     {
         return $this->nodeAttributes[Load::class] ?? null;
+    }
+
+    public function _loadFirst(): ?LoadFirst
+    {
+        return $this->nodeAttributes[LoadFirst::class] ?? null;
+    }
+
+    public function _loadAll(): ?LoadAll
+    {
+        return $this->nodeAttributes[LoadAll::class] ?? null;
     }
 
     public function _search(): ?Search

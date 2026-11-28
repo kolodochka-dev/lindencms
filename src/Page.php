@@ -2,6 +2,9 @@
 
 namespace LindenCMS\Cms;
 
+use LindenCMS\Cms\Attributes\Load;
+use LindenCMS\Cms\Attributes\LoadAll;
+use LindenCMS\Cms\Attributes\LoadFirst;
 use LindenCMS\Cms\Exceptions\PageLoadException;
 use LindenCMS\Cms\Traits\HasAttributes;
 use Illuminate\Http\Request;
@@ -23,10 +26,20 @@ abstract class Page extends Node
          * @var AppNode|AppNodeCollection $child
          */
         foreach ($page->getChildren() as $key => $child) {
-            if ($loader = $child->_load()?->loader) {
+            $loader = null;
+            foreach ($this->loaders() as $loaderAttribute) {
+                if (isset($child->nodeAttributes[$loaderAttribute])) {
+                    $loader = $child->nodeAttributes[$loaderAttribute];
+                    break;
+                }
+            }
+
+            if ($loader) {
+                $loaderCallback = $loader?->loader;
+                
                 $child->setParent(null);
                 try {
-                    $loader($child, $page, $request);
+                    $loaderCallback($child, $page, $request);
                 } catch (PageLoadException $e) {
                     return $e->getResponse() ?? abort(404);
                 }
@@ -36,5 +49,14 @@ abstract class Page extends Node
         }
 
         return $page->ctx()->html_page();
+    }
+
+    protected function loaders()
+    {
+        return [
+            Load::class,
+            LoadFirst::class,
+            LoadAll::class,
+        ];
     }
 }

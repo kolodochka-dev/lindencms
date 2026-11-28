@@ -6,6 +6,6 @@ namespace LindenCMS\Cms\Attributes;
 class Load
 {
     public function __construct(
-        public ?\Closure $loader = null,
+        public \Closure $loader,
     ) {}
 }
